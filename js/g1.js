@@ -21,13 +21,13 @@ if (!String.prototype.formatString) {
   };
 }
 
-(function ( $ ) {
+(function ( jQuery ) {
   console.log('f2');
 
 
 
 
-    $.fn.github_graph = function( options ) {
+    jQuery.fn.github_graph = function( options ) {
       console.log('f3');
 
         //If the number less than 10, add Zero before it
@@ -186,18 +186,18 @@ if (!String.prototype.formatString) {
 
           wrap_chart.html(wire_html);
 
-          $(_this).find(".day").on('click',function () {
+          jQuery(_this).find(".day").on('click',function () {
 
             if (clickCallback){
-              clickCallback($(this).attr("data-date"), parseInt($(this).attr("data-count")));
+              clickCallback(jQuery(this).attr("data-date"), parseInt(jQuery(this).attr("data-count")));
             }
 
           });
 
-          $(_this).find(".day").hover(function () {
-              $(this).attr("style", "stroke-width: 1; stroke: "+ hoverColor);
+          jQuery(_this).find(".day").hover(function () {
+              jQuery(this).attr("style", "stroke-width: 1; stroke: "+ hoverColor);
             }, function() {
-              $( this ).attr( "style", "stroke-width:0" );
+              jQuery( this ).attr( "style", "stroke-width:0" );
           });
 
           _this.find('rect').on("mouseenter", mouseEnter );
@@ -207,21 +207,21 @@ if (!String.prototype.formatString) {
         }
 
         var mouseLeave =function(evt){
-          $('.svg-tip').hide();
+          jQuery('.svg-tip').hide();
         }
 
         //handle event mouseenter when enter into rect element
         var mouseEnter = function(evt){
 
-          var target_offset = $(evt.target).offset();
-          var count = $(evt.target).attr('data-count');
-          var date = $(evt.target).attr('data-date');
+          var target_offset = jQuery(evt.target).offset();
+          var count = jQuery(evt.target).attr('data-count');
+          var date = jQuery(evt.target).attr('data-date');
 
           var count_text = ( count > 1 ) ? settings.texts[1]: settings.texts[0];
           var average_text = +count +2;
           var text = "{0} {1} on {2} | Average: {3} hours".formatString( count, count_text , date, average_text );
 
-          var svg_tip = $('.svg-tip').show();
+          var svg_tip = jQuery('.svg-tip').show();
           svg_tip.html( text );
           var svg_width = Math.round( svg_tip.width()/2 + 5 )  ;
           var svg_height =  svg_tip.height() *2 + 10 ;
@@ -232,12 +232,12 @@ if (!String.prototype.formatString) {
         //Append tooltip to display when mouse enter the rect element
         //Default is display:none
         var appendTooltip = function(){
-          if ( $('.svg-tip').length == 0 ){
-            $('body').append('<div class="svg-tip svg-tip-one-line" style="display:none" ></div>');
+          if ( jQuery('.svg-tip').length == 0 ){
+            jQuery('body').append('<div class="svg-tip svg-tip-one-line" style="display:none" ></div>');
           }
         }
 
-        var settings = $.extend({
+        var settings = jQuery.extend({
           colors: ['#eeeeee','#d6e685','#8cc665','#44a340','#44a340'],
           border:{
             radius: 2,
@@ -252,7 +252,7 @@ if (!String.prototype.formatString) {
           data:[],
         }, options );
 
-        var _this = $(this);
+        var _this = jQuery(this);
 
         start();
 
