@@ -1,0 +1,79 @@
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="js/github_contribution.js"></script>
+  <link href="css/github_contribution_graph.css" media="all" rel="stylesheet" />
+  <script type="text/javascript">
+    //Generate random number between min and max
+    function randomInt(min,max)
+    {
+      return Math.floor(Math.random()*(max-min+1)+min);
+    }
+
+    function getRandomTimeStamps( min, max, fromDate, isObject ){
+      var return_list = [];
+      var entries =  randomInt( min, max );
+      for ( var i =0; i < entries; i++ ){
+        var day = fromDate ? new Date(fromDate.getTime()):  new Date();
+
+        //Genrate random
+        var previous_date = randomInt(0,365+2);
+        if (!fromDate){
+          previous_date = - previous_date;
+        }
+        day.setDate( day.getDate() + previous_date );
+
+        if (isObject){
+          var count = randomInt(1,20);
+          return_list.push({
+            timestamp: day.getTime(),
+            count: count
+          });
+        }else{
+          return_list.push( day.getTime() );
+        }
+
+      }
+      return return_list;
+
+    }
+    $(document).ready(function(){
+        $('#github_chart_1').github_graph( {
+          //Generate random entries from 50-> 200 entries
+          data: getRandomTimeStamps(50,2000, null,false) ,
+          texts: ['hour','hours'],
+          h_days : ['Mon','Wed','Fri'],
+          colors: ['#b9ddf7','#71aad2 ','#4d87ae','#2e678b','#104668']
+
+        });
+
+
+
+    });
+  </script>
+</head>
+
+<body>
+  <div class="">
+      <div id="github_chart_1"></div>
+      <div class="width-full f6 px-0 px-md-5 py-1">
+
+                <div class="float-right color-fg-muted" title="A summary of pull requests, issues opened, and commits to the default and gh-pages branches.">
+                  Less
+                    <svg width="10" height="10" class="d-inline-block">
+                      <rect fill="#b9ddf7" width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="0"></rect>
+                    </svg>
+                    <svg width="10" height="10" class="d-inline-block">
+                      <rect fill="#71aad2" width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="1"></rect>
+                    </svg>
+                    <svg width="10" height="10" class="d-inline-block">
+                      <rect fill="#4d87ae" width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="2"></rect>
+                    </svg>
+                    <svg width="10" height="10" class="d-inline-block">
+                      <rect fill="#2e678b" width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="3"></rect>
+                    </svg>
+                    <svg width="10" height="10" class="d-inline-block">
+                      <rect fill="#104668" width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="4"></rect>
+                    </svg>
+                  More
+                </div>
+              </div>
+  </div>
