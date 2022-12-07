@@ -214,7 +214,8 @@ if (!String.prototype.formatString) {
           var date = $(evt.target).attr('data-date');
 
           var count_text = ( count > 1 ) ? settings.texts[1]: settings.texts[0];
-          var text = "{0} {1} on {2}".formatString( count, count_text , date );
+          var average_text = +count +2;
+          var text = "{0} {1} on {2} | Average: {3} hours".formatString( count, count_text , date, average_text );
 
           var svg_tip = $('.svg-tip').show();
           svg_tip.html( text );
