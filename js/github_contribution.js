@@ -1,3 +1,4 @@
+console.log('f1');
 /**
  * Jquery plugin to render like contribution graph on Github.
  *
@@ -21,10 +22,13 @@ if (!String.prototype.formatString) {
 }
 
 (function ( $ ) {
+  console.log('f2');
+
 
 
 
     $.fn.github_graph = function( options ) {
+      console.log('f3');
 
         //If the number less than 10, add Zero before it
         var prettyNumber = function( number ){
