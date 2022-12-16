@@ -217,7 +217,7 @@ if (!String.prototype.formatString) {
           var count = jQuery(evt.target).attr('data-count');
           var date = jQuery(evt.target).attr('data-date');
 
-          var count_text = ( count == 1 ) ? settings.texts[1]: settings.texts[0];
+          var count_text = ( count == 1 ) ? settings.texts[0]: settings.texts[1];
           var average_text = +count +2;
           var text = "{0} {1} on {2} | Average Class: {3} points".formatString( count, count_text , date, average_text );
 
